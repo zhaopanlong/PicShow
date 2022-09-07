@@ -16,7 +16,7 @@ import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.bm.library.PhotoView
 import com.bumptech.glide.Glide
 
- internal class PicShowActivity : AppCompatActivity() {
+internal class PicShowActivity : AppCompatActivity() {
 
     lateinit var viewpager: ViewPager
     lateinit var tvZhishi: TextView
@@ -31,40 +31,61 @@ import com.bumptech.glide.Glide
     var imgType = -1
 
     companion object {
-        private var picBase64Images: ArrayList<String> = ArrayList()
-        private var picImageViews: ArrayList<ImageView> = ArrayList()
-        private var picImageUrls: ArrayList<String> = ArrayList()
+        private val picBase64Images: ArrayList<String> = ArrayList()
+        private val picImageViews: ArrayList<ImageView> = ArrayList()
+        private val picImageUrls: ArrayList<String> = ArrayList()
 
 
-        fun showUrlImage(context: Context, imageUrls: ArrayList<String>, currentPostion: Int) {
+        fun showUrlImage(context: Context, imageUrls: ArrayList<String>, postion: Int) {
             picImageUrls.clear()
             picImageUrls.addAll(imageUrls)
+            var mCurrentPostion = postion-1
+            if (postion <= 1) {
+                mCurrentPostion = 0
+            }
+            if (postion > picImageUrls.size) {
+                mCurrentPostion = picImageUrls.size-1
+            }
             val intent = Intent(context, PicShowActivity::class.java)
             val bundle = Bundle()
             bundle.putInt("imgType", 0)
-            bundle.putInt("currentPostion", currentPostion)
+            bundle.putInt("currentPostion", mCurrentPostion)
             intent.putExtras(bundle)
             context.startActivity(intent)
         }
 
-        fun showUrlBase64(context: Context, base64Images: ArrayList<String>, currentPostion: Int) {
+        fun showUrlBase64(context: Context, base64Images: ArrayList<String>, postion: Int) {
             picBase64Images.clear()
             picBase64Images.addAll(base64Images)
+            var mCurrentPostion = postion-1
+            if (postion <= 1) {
+                mCurrentPostion = 0
+            }
+            if (postion > picBase64Images.size) {
+                mCurrentPostion = picBase64Images.size-1
+            }
             val intent = Intent(context, PicShowActivity::class.java)
             val bundle = Bundle()
             bundle.putInt("imgType", 1)
-            bundle.putInt("currentPostion", currentPostion)
+            bundle.putInt("currentPostion", mCurrentPostion)
             intent.putExtras(bundle)
             context.startActivity(intent)
         }
 
-        fun showImageViews(context: Context, imageViews: ArrayList<ImageView>, currentPostion: Int) {
+        fun showImageViews(context: Context, imageViews: ArrayList<ImageView>, postion: Int) {
             picImageViews.clear()
             picImageViews.addAll(imageViews)
+            var mCurrentPostion = postion-1
+            if (postion <= 1) {
+                mCurrentPostion = 0
+            }
+            if (postion > picImageViews.size) {
+                mCurrentPostion = picImageViews.size-1
+            }
             val intent = Intent(context, PicShowActivity::class.java)
             val bundle = Bundle()
             bundle.putInt("imgType", 2)
-            bundle.putInt("currentPostion", currentPostion)
+            bundle.putInt("currentPostion", mCurrentPostion)
             intent.putExtras(bundle)
             context.startActivity(intent)
         }
@@ -165,6 +186,6 @@ import com.bumptech.glide.Glide
         if (imgType == 2) {
             totalSize = picImageViews.size
         }
-        tvZhishi.setText((mChoosePoint + 1).toString() + "/" + totalSize)
+        tvZhishi.setText((mChoosePoint+1).toString() + "/" + totalSize)
     }
 }

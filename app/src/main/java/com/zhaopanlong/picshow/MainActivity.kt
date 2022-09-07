@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
                     "https://www.9618968.com/img/imgNew/solution6.jpg",
                     "https://www.9618968.com/img/imgNew/solution7.jpg",
                     "https://www.9618968.com/img/imgNew/solution8.jpg"
-                ),3
+                ),123
             )
         }
     }
