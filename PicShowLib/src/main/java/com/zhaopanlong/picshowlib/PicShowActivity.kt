@@ -16,10 +16,10 @@ import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.bm.library.PhotoView
 import com.bumptech.glide.Glide
 
-class PicShowActivity : AppCompatActivity() {
-    
-    lateinit var viewpager : ViewPager
-    lateinit var tvZhishi : TextView
+ internal class PicShowActivity : AppCompatActivity() {
+
+    lateinit var viewpager: ViewPager
+    lateinit var tvZhishi: TextView
 
     private var mChoosePoint = 0
 
@@ -28,9 +28,9 @@ class PicShowActivity : AppCompatActivity() {
      * 1 = base64类型
      * 2 = imageView
      */
-    public var imgType = -1
+    var imgType = -1
 
-    companion object{
+    companion object {
         private var picBase64Images: ArrayList<String> = ArrayList()
         private var picImageViews: ArrayList<ImageView> = ArrayList()
         private var picImageUrls: ArrayList<String> = ArrayList()
@@ -70,7 +70,7 @@ class PicShowActivity : AppCompatActivity() {
         }
     }
 
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.showpic_activity)

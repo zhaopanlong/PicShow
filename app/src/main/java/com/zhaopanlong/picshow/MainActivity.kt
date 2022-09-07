@@ -3,15 +3,16 @@ package com.zhaopanlong.picshow
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.zhaopanlong.picshowlib.PicShowActivity
+import com.zhaopanlong.picshowlib.PicShowUtils
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
         var iv = findViewById<ImageView>(R.id.iv)
+
         iv.setOnClickListener {
-            PicShowActivity.showUrlImage(
+            PicShowUtils.showUrlImage(
                 this, arrayListOf(
                     "https://www.9618968.com/img/imgNew/solution1.jpg",
                     "https://www.9618968.com/img/imgNew/solution2.jpg",
