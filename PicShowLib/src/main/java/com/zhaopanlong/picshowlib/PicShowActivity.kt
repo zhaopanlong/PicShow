@@ -36,7 +36,7 @@ internal class PicShowActivity : AppCompatActivity() {
         private val picImageUrls: ArrayList<String> = ArrayList()
 
 
-        fun showUrlImage(context: Context, imageUrls: ArrayList<String>, postion: Int) {
+        fun showUrlImage(context: Context, imageUrls: List<String>, postion: Int) {
             picImageUrls.clear()
             picImageUrls.addAll(imageUrls)
             var mCurrentPostion = postion-1
@@ -54,7 +54,7 @@ internal class PicShowActivity : AppCompatActivity() {
             context.startActivity(intent)
         }
 
-        fun showUrlBase64(context: Context, base64Images: ArrayList<String>, postion: Int) {
+        fun showUrlBase64(context: Context, base64Images: List<String>, postion: Int) {
             picBase64Images.clear()
             picBase64Images.addAll(base64Images)
             var mCurrentPostion = postion-1
@@ -72,7 +72,7 @@ internal class PicShowActivity : AppCompatActivity() {
             context.startActivity(intent)
         }
 
-        fun showImageViews(context: Context, imageViews: ArrayList<ImageView>, postion: Int) {
+        fun showImageViews(context: Context, imageViews: List<ImageView>, postion: Int) {
             picImageViews.clear()
             picImageViews.addAll(imageViews)
             var mCurrentPostion = postion-1
