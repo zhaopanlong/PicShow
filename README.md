@@ -1,5 +1,7 @@
 # PicShow
 
+![](demo.gif)
+
 展示缩略图
 
 ```java
