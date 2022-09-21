@@ -1,8 +1,11 @@
 package com.zhaopanlong.picshow
 
 import android.os.Bundle
+import android.view.View
+import android.view.View.OnClickListener
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.zhaopanlong.picshowlib.GridPicShowLayout
 import com.zhaopanlong.picshowlib.PicShowUtils
 
 class MainActivity : AppCompatActivity() {
@@ -25,5 +28,13 @@ class MainActivity : AppCompatActivity() {
                 ),123
             )
         }
+
+        val gridPicLayout = findViewById<GridPicShowLayout>(R.id.gridPicLayout)
+        gridPicLayout.setOnPlusClickListen(object :OnClickListener{
+            override fun onClick(p0: View?) {
+                gridPicLayout.addImagePath("https://www.9618968.com/img/imgNew/solution1.jpg")
+            }
+
+        })
     }
 }
