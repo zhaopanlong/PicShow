@@ -70,18 +70,28 @@ class GridPicShowLayout : RecyclerView {
     }
 
     fun addImagePath(path: String) {
+        if (imagePaths.size == maxLength){
+            return
+        }
         imagePaths.add(path)
         mAdapter.notifyDataSetChanged()
     }
 
-    fun addImagePaths(path: List<String>) {
-        imagePaths.addAll(path)
+    fun addImagePaths(paths: List<String>) {
+        if (imagePaths.size == maxLength){
+            return
+        }
+        imagePaths.addAll(paths.subList(0,maxLength-imagePaths.size))
         mAdapter.notifyDataSetChanged()
     }
 
-    fun setImagePaths(path: List<String>) {
+    fun setImagePaths(paths: List<String>) {
         imagePaths.clear()
-        imagePaths.addAll(path)
+        if (paths.size <= maxLength){
+            imagePaths.addAll(paths)
+        }else{
+            imagePaths.addAll(paths.subList(0,maxLength))
+        }
         mAdapter.notifyDataSetChanged()
     }
 
