@@ -1,10 +1,14 @@
 package com.zhaopanlong.picshow
 
+import android.graphics.Color
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.View
 import android.view.View.OnClickListener
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
+import com.fondesa.recyclerviewdivider.dividerBuilder
 import com.zhaopanlong.picshowlib.GridPicShowLayout
 import com.zhaopanlong.picshowlib.PicShowUtils
 
@@ -32,6 +36,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         val gridPicLayout = findViewById<GridPicShowLayout>(R.id.gridPicLayout)
+        val layoutManager = GridLayoutManager(this,3)
+        gridPicLayout.layoutManager = layoutManager
+        dividerBuilder()
+            .color(Color.TRANSPARENT)
+            .size(20,TypedValue.COMPLEX_UNIT_DIP)
+            .build()
+            .addTo(gridPicLayout)
         gridPicLayout.setOnPlusClickListen(object :OnClickListener{
             override fun onClick(p0: View?) {
                 postion++

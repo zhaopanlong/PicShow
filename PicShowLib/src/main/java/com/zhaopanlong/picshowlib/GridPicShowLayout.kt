@@ -1,9 +1,7 @@
 package com.zhaopanlong.picshowlib
 
 import android.content.Context
-import android.graphics.Color
 import android.util.AttributeSet
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,25 +9,17 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.fondesa.recyclerviewdivider.dividerBuilder
 
 class GridPicShowLayout : RecyclerView {
-    var maxLength = 6
-    val spanCount = 3
-    private var spaceSize = 20
-    val imagePaths = arrayListOf<String>()
-    val mAdapter = GridPicAdapter()
+    private var maxLength = 6
+    private val imagePaths = arrayListOf<String>()
+    private val mAdapter = GridPicAdapter()
 
     private var mPlusOnClickListener: OnClickListener? = null
 
     constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet) {
-        layoutManager = GridLayoutManager(context, spanCount)
+        layoutManager = GridLayoutManager(context, 1)
         adapter = mAdapter
-       context.dividerBuilder()
-            .color(Color.TRANSPARENT)
-            .size(spaceSize, TypedValue.COMPLEX_UNIT_DIP)
-            .build()
-            .addTo(this)
     }
 
 
@@ -95,18 +85,16 @@ class GridPicShowLayout : RecyclerView {
         mAdapter.notifyDataSetChanged()
     }
 
+    fun getImagePaths(): List<String> {
+        return imagePaths
+    }
+
     fun setOnPlusClickListen(listener: OnClickListener) {
         mPlusOnClickListener = listener
     }
 
-    fun setSpaceSize(size: Int) {
-        spaceSize = size
-        mAdapter.notifyDataSetChanged()
-    }
-
 
     inner class IteamViewVh(view: View) : ViewHolder(view) {
-
         val ivPic = view.findViewById<ImageView>(R.id.ivPic)
         val ivDelete = view.findViewById<ImageView>(R.id.ivDelete)
     }
@@ -114,7 +102,6 @@ class GridPicShowLayout : RecyclerView {
     inner class PlusIteamVh(view: View) : ViewHolder(view) {
 
     }
-
 
 
 }
