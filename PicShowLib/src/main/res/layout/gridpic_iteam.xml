@@ -16,5 +16,6 @@
             android:src="@mipmap/gridpic_ic_dele"
             android:layout_alignParentRight="true"
             android:padding="3dp"
+            android:id="@+id/ivDelete"
             />
 </RelativeLayout>

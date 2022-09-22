@@ -2,9 +2,7 @@ package com.zhaopanlong.picshowlib
 
 import android.content.Context
 import android.graphics.Color
-import android.graphics.Rect
 import android.util.AttributeSet
-import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
@@ -60,6 +58,10 @@ class GridPicShowLayout : RecyclerView {
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             if (holder is IteamViewVh) {
                 Glide.with(context).load(imagePaths[position]).into(holder.ivPic)
+                holder.ivDelete.setOnClickListener {
+                    imagePaths.removeAt(position)
+                    notifyDataSetChanged()
+                }
             }
 
             if (holder is PlusIteamVh) {
@@ -106,23 +108,13 @@ class GridPicShowLayout : RecyclerView {
     inner class IteamViewVh(view: View) : ViewHolder(view) {
 
         val ivPic = view.findViewById<ImageView>(R.id.ivPic)
-
+        val ivDelete = view.findViewById<ImageView>(R.id.ivDelete)
     }
 
     inner class PlusIteamVh(view: View) : ViewHolder(view) {
 
     }
 
-    inner class SpacesItemDecoration(val space: Int) : RecyclerView.ItemDecoration() {
-
-        override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
-            outRect.right = space
-            Log.d("GridPicShowLayout","view的条目id="+parent.getChildLayoutPosition(view))
-//            if ((parent.getChildLayoutPosition(view)+1) % spanCount == 0) {
-//                outRect.right = 0
-//            }
-        }
-    }
 
 
 }
