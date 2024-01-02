@@ -31,20 +31,22 @@ internal class PicShowActivity : AppCompatActivity() {
     var imgType = -1
 
     companion object {
-        private val picBase64Images: ArrayList<String> = ArrayList()
-        private val picImageViews: ArrayList<ImageView> = ArrayList()
-        private val picImageUrls: ArrayList<String> = ArrayList()
+        private var picBase64Images: List<String> = listOf()
+        private var picImageViews: List<ImageView> = listOf()
+        private var picImageUrls: List<String> = listOf()
 
 
         fun showUrlImage(context: Context, imageUrls: List<String>, postion: Int) {
-            picImageUrls.clear()
-            picImageUrls.addAll(imageUrls)
-            var mCurrentPostion = postion-1
+            if (imageUrls == null || imageUrls.size == 0) {
+                return
+            }
+            picImageUrls = imageUrls
+            var mCurrentPostion = postion - 1
             if (postion <= 1) {
                 mCurrentPostion = 0
             }
             if (postion > picImageUrls.size) {
-                mCurrentPostion = picImageUrls.size-1
+                mCurrentPostion = picImageUrls.size - 1
             }
             val intent = Intent(context, PicShowActivity::class.java)
             val bundle = Bundle()
@@ -55,14 +57,16 @@ internal class PicShowActivity : AppCompatActivity() {
         }
 
         fun showUrlBase64(context: Context, base64Images: List<String>, postion: Int) {
-            picBase64Images.clear()
-            picBase64Images.addAll(base64Images)
-            var mCurrentPostion = postion-1
+            if (base64Images == null || base64Images.size == 0) {
+                return
+            }
+            picBase64Images = base64Images
+            var mCurrentPostion = postion - 1
             if (postion <= 1) {
                 mCurrentPostion = 0
             }
             if (postion > picBase64Images.size) {
-                mCurrentPostion = picBase64Images.size-1
+                mCurrentPostion = picBase64Images.size - 1
             }
             val intent = Intent(context, PicShowActivity::class.java)
             val bundle = Bundle()
@@ -73,14 +77,16 @@ internal class PicShowActivity : AppCompatActivity() {
         }
 
         fun showImageViews(context: Context, imageViews: List<ImageView>, postion: Int) {
-            picImageViews.clear()
-            picImageViews.addAll(imageViews)
-            var mCurrentPostion = postion-1
+            if (imageViews == null || imageViews.size == 0) {
+                return
+            }
+            picImageViews = imageViews
+            var mCurrentPostion = postion - 1
             if (postion <= 1) {
                 mCurrentPostion = 0
             }
             if (postion > picImageViews.size) {
-                mCurrentPostion = picImageViews.size-1
+                mCurrentPostion = picImageViews.size - 1
             }
             val intent = Intent(context, PicShowActivity::class.java)
             val bundle = Bundle()
@@ -102,6 +108,13 @@ internal class PicShowActivity : AppCompatActivity() {
             finish()
         }
         initView()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        picBase64Images = listOf()
+        picImageViews = listOf()
+        picImageUrls = listOf()
     }
 
     fun initView() {
@@ -186,6 +199,6 @@ internal class PicShowActivity : AppCompatActivity() {
         if (imgType == 2) {
             totalSize = picImageViews.size
         }
-        tvZhishi.setText((mChoosePoint+1).toString() + "/" + totalSize)
+        tvZhishi.setText((mChoosePoint + 1).toString() + "/" + totalSize)
     }
 }
